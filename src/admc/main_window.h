@@ -35,6 +35,7 @@ class MainWindow final : public QMainWindow {
 
 public:
     Ui::MainWindow *ui;
+    int flag_theme;
 
     MainWindow(AdInterface &ad, QWidget *parent = nullptr);
     ~MainWindow();
@@ -45,6 +46,9 @@ protected:
 private:
     QLabel *login_label;
 
+
+    void make_icons_theme_new();
+    void make_icons_theme_old();
     void on_log_searches_changed();
     void on_show_login_changed();
     void open_manual();

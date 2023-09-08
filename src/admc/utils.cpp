@@ -184,6 +184,117 @@ void limit_plain_text_edit(QPlainTextEdit *edit, const QString &attribute) {
     }
 }
 
+QMap <QString,QString> MapIcons_oldTheme = {
+    {"DomainDNS",                   "network-server"},
+    {"Container",                   "folder"},
+    {"OrganizationalUnit",          "folder-documents-symbolic"},
+    {"Group",                       "user-group-new"},
+    {"Person",                      "avatar-default"},
+    {"Computer",                    "computer"},
+    {"GroupPolicyContainer",        "preferences-other"},
+    {"Volume",                      "folder-documents"},
+    {"BuiltinDomain",               "emblem-system"},
+    {"DfsConfiguration",            "emblem-system"},
+    {"LostAndFound",                "emblem-system"},
+    {"FSP",                         ""},
+    {"DefaultDomainPolicy",         ""},
+    {"RPCServices",                 ""},
+    {"FileReplicationService",      ""},
+    {"NTDSQuotas",                  ""},
+    {"FolderOpen",                  "folder-open-symbolic"},
+    {"GPO",                         ""},
+    {"HelpContents",                "help-contents"},
+    {"GoUp",                        "go-up"},
+    {"GoPrevious",                  "go-previous"},
+    {"GoNext",                      "go-next"},
+    {"ViewRefresh",                 "view-refresh"},
+    {"Avatar",                      "avatar-default-symbolic"},
+    {"UserGroupNew",                "system-users"},
+    {"OU",                          "folder-documents"},
+    {"TreeFolderSave",              ""},
+    {"TheeSaveSearch",              ""},
+    {"TheeSpinner",                 ""},
+    {"TheeDomain",                  ""},
+    {"TheeGPO",                     ""},
+    {"TheeSaveQueries",             ""},
+    {"MailForward",                 "mail-forward"},
+    {"Stop",                        "stop"},
+    {"Lock",                        "changes-prevent"},
+    {"DialogWarning",               "dialog-warning"},
+    {"DialogError",                 "dialog-error"}
+};
+
+QMap <QString,QString> MapIcons_newTheme = {
+    {"DomainDNS",                   "DomainDNS_ALT"},
+    {"Container",                   "Container_ALT"},
+    {"OrganizationalUnit",          "OrganizationalUnit_ALT"},
+    {"Group",                       "Group_ALT"},
+    {"Person",                      "Person_ALT"},
+    {"Computer",                    "Computer_ALT"},
+    {"GroupPolicyContainer",        "GroupPolicyContainer_ALT"},
+    {"Volume",                      "Volume_ALT"},
+    {"BuiltinDomain",               "BuiltinDomain_ALT"},
+    {"DfsConfiguration",            "DfsConfiguration_ALT"},
+    {"LostAndFound",                "LostAndFound_ALT"},
+    {"FSP",                         "FSP_ALT"},
+    {"DefaultDomainPolicy",         "DefaultDomainPolicy_ALT"},
+    {"RPCServices",                 "RPCServices_ALT"},
+    {"FileReplicationService",      "FileReplicationService_ALT"},
+    {"NTDSQuotas",                  "NTDSQuotas_ALT"},
+    {"FolderOpen",                  "FolderOpen_ALT"},
+    {"GPO",                         "GPO_ALT"},
+    {"HelpContents",                "HelpContents_ALT"},
+    {"GoUp",                        "GoUp_ALT"},
+    {"GoPrevious",                  "GoPrevious_ALT"},
+    {"GoNext",                      "GoNext_ALT"},
+    {"ViewRefresh",                 "ViewRefresh_ALT"},
+    {"Avatar",                      "Avatar_ALT"},
+    {"UserGroupNew",                "UserGroupNew_ALT"},
+    {"OU",                          "OU_ALT"},
+    {"TreeFolderSave",              "TreeFolderSave_ALT"},
+    {"TheeSaveSearch",              "TheeSaveSearch_ALT"},
+    {"TheeSpinner",                 "TheeSpinner_ALT"},
+    {"TheeDomain",                  "TheeDomain_ALT"},
+    {"TheeGPO",                     "TheeGPO_ALT"},
+    {"TheeSaveQueries",             "TheeSaveQueries_ALT"},
+    {"MailForward",                 "MailForward_ALT"},
+    {"Stop",                        "Stop_ALT"},
+    {"Lock",                        "Lock_ALT"},
+    {"DialogWarning",               "DialogWarning_ALT"},
+    {"DialogError",                 "DialogError_ALT"}
+};
+
+QMap <QString,QString> MapIcons;
+
+void setThemeIcons(int mainTheme){
+
+        switch (mainTheme) {
+            case 1:
+                MapIcons = MapIcons_newTheme;
+                break;
+            default:
+                MapIcons = MapIcons_oldTheme;
+                break;
+        }
+}
+
+QIcon build_icons(const QString &name_icon){
+//    QMap <QString,QString> MapIcons;
+//    switch (flag_theme_this) {
+//        case 1:
+//            MapIcons = MapIcons_newTheme;
+//            break;
+//        default:
+//            MapIcons = MapIcons_oldTheme;
+//            break;
+//    }
+
+    const QIcon icon = QIcon::fromTheme(MapIcons[name_icon]);
+//    const QString dir = QString ("../../../../usr/share/icons/admc/icons/16/");
+//    const QIcon icon = QIcon(dir + name_icon + ".svg");
+    return icon;
+}
+
 QIcon get_object_icon(const AdObject &object) {
     const QString object_category = [&]() {
         const QString category_dn = object.get_string(ATTRIBUTE_OBJECT_CATEGORY);

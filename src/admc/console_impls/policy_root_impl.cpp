@@ -87,7 +87,8 @@ void console_policy_tree_init(ConsoleWidget *console) {
     auto policy_tree_head = head_row[0];
     policy_tree_head->setText(QCoreApplication::translate("policy_root_impl", "Group Policy Objects"));
     policy_tree_head->setDragEnabled(false);
-    policy_tree_head->setIcon(QIcon::fromTheme("folder"));
+//    policy_tree_head->setIcon(QIcon::fromTheme("folder"));
+    policy_tree_head->setIcon(build_icons("Container"));
 }
 
 QModelIndex get_policy_tree_root(ConsoleWidget *console) {

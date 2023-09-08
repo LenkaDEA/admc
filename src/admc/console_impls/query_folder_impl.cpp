@@ -341,7 +341,8 @@ void console_query_tree_init(ConsoleWidget *console) {
     const QList<QStandardItem *> root_row = console->add_scope_item(ItemType_QueryFolder, QModelIndex());
     auto root = root_row[0];
     root->setText(QCoreApplication::translate("query", "Saved Queries"));
-    root->setIcon(QIcon::fromTheme("folder"));
+//    root->setIcon(QIcon::fromTheme("folder"));
+    root->setIcon(build_icons("Container"));
     root->setDragEnabled(false);
     root->setData(true, QueryItemRole_IsRoot);
 
@@ -533,7 +534,8 @@ QModelIndex console_query_folder_create(ConsoleWidget *console, const QString &n
 void console_query_folder_load(const QList<QStandardItem *> &row, const QString &name, const QString &description) {
     QStandardItem *main_item = row[0];
     main_item->setData(description, QueryItemRole_Description);
-    main_item->setIcon(QIcon::fromTheme("folder"));
+//    main_item->setIcon(QIcon::fromTheme("folder"));
+    main_item->setIcon(build_icons("Container"));
     main_item->setData(false, QueryItemRole_IsRoot);
 
     row[QueryColumn_Name]->setText(name);

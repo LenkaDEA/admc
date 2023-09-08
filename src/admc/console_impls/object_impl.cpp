@@ -1324,7 +1324,8 @@ void console_object_move_and_rename(const QList<ConsoleWidget *> &console_list, 
                 // refresh
                 const QModelIndex query_index = index.parent();
                 QStandardItem *item = target_console->get_item(query_index);
-                item->setIcon(QIcon::fromTheme("dialog-warning"));
+//                item->setIcon(QIcon::fromTheme("dialog-warning"));
+                item->setIcon(build_icons("DialogWarning"));
                 item->setToolTip(QCoreApplication::translate("ObjectImpl", "Query may be out of date"));
 
                 // Update item row
@@ -1649,7 +1650,8 @@ void console_object_search(ConsoleWidget *console, const QModelIndex &index, con
     }
 
     // Set icon to indicate that item is in "search" state
-    item->setIcon(QIcon::fromTheme("system-search"));
+//    item->setIcon(QIcon::fromTheme("system-search"));
+    item->setIcon(build_icons("system-search"));
 
     // NOTE: need to set this role to disable actions during
     // fetch
@@ -1723,7 +1725,8 @@ void console_object_search(ConsoleWidget *console, const QModelIndex &index, con
             }
 
             const QString original_icon_name = item_now->data(MyConsoleRole_IconBeforeSearch).toString();
-            item_now->setIcon(QIcon::fromTheme(original_icon_name));
+            item_now->setIcon(QIcon::fromTheme(original_icon_name)); //Добавить выбор новой темы FIXME
+//            item_now->setIcon(build_icons("OrganizationalUnit")); //Добавить выбор новой темы FIXME
 
             // NOTE: empty IconBeforeSearch so next search
             // can use this as clean state

@@ -54,6 +54,8 @@ MainWindow::MainWindow(AdInterface &ad, QWidget *parent)
     ui = new Ui::MainWindow();
     ui->setupUi(this);
 
+    flag_theme = 0; //инициализируем
+
     country_combo_load_data();
 
     g_status->init(ui->statusbar, ui->message_log_edit);
@@ -64,9 +66,9 @@ MainWindow::MainWindow(AdInterface &ad, QWidget *parent)
 
     ui->statusbar->addAction(ui->action_show_login);
 
-    //
-    // Console
-    //
+//    //
+//    // Console
+//    //
     auto object_impl = new ObjectImpl(ui->console);
     ui->console->register_impl(ItemType_Object, object_impl);
 
@@ -95,6 +97,9 @@ MainWindow::MainWindow(AdInterface &ad, QWidget *parent)
     // NOTE: redefine icons for create actions because need
     // to try multiple variants because DE's sometimes don't
     // share icons
+
+    make_icons_theme_old();
+
     const QIcon create_user_icon = get_object_icon(OBJECT_CATEGORY_PERSON);
     ui->action_create_user->setIcon(create_user_icon);
 
@@ -234,6 +239,13 @@ MainWindow::MainWindow(AdInterface &ad, QWidget *parent)
     // Connect
     //
     connect(
+        ui->action_new_theme, &QAction::triggered,
+        this, &MainWindow::make_icons_theme_new);
+    connect(
+        ui->action_old_theme, &QAction::triggered,
+        this, &MainWindow::make_icons_theme_old);
+
+    connect(
         ui->action_connection_options, &QAction::triggered,
         this, &MainWindow::open_connection_options);
     connect(
@@ -345,6 +357,88 @@ void MainWindow::closeEvent(QCloseEvent *event) {
     settings_set_variant(SETTING_console_widget_state, console_state);
 
     QMainWindow::closeEvent(event);
+}
+#include <QDebug>
+void MainWindow::make_icons_theme_new(){
+    qDebug() << "Выбрана новая тема!";
+    qDebug() << QIcon::fallbackThemeName();
+    setThemeIcons(1);
+
+
+    ui->action_navigate_up->setIcon(build_icons("GoUp"));
+    ui->action_navigate_back->setIcon(build_icons("GoPrevious"));
+    ui->action_navigate_forward->setIcon(build_icons("GoNext"));
+    ui->action_refresh->setIcon(build_icons("ViewRefresh"));
+    ui->action_create_user->setIcon(build_icons("Avatar"));
+    ui->action_create_group->setIcon(build_icons("UserGroupNew"));
+    ui->action_create_ou->setIcon(build_icons("OU"));
+    ui->action_manual->setIcon(build_icons("HelpContents"));
+
+
+
+   // QMap1; // old string values
+    //Qmap2; // new string values [key]qString
+
+//    QMap newIcons = QMap({
+
+//    });
+//    QMap <QString,QString> icons_new = {
+//        {"comp","computerALT"},
+//        {"folder","folderopenALT"},
+//        {"editcopy","editcopyALT"}
+//    };
+
+
+//    ui->action_manual->setIcon(QIcon::fromTheme(icons_new["editcopy"]));
+//    ui->action_refresh->setIcon(get_object_our_icon("edit-copy"));
+
+
+
+// func buildUI(qMap myMap){
+
+//    ui->action_navigate_up->setIcon(get_object_our_icon(myMap[ACTION_NAVIGATE]));
+//    ui->action_navigate_back->setIcon(get_object_our_icon("go-previous"));
+//    ui->action_navigate_forward->setIcon(get_object_our_icon("go-next"));
+//    ui->action_refresh->setIcon(get_object_our_icon("view-refresh"));
+//    ui->action_create_user->setIcon(get_object_our_icon("im-user"));
+//    ui->action_create_group->setIcon(get_object_our_icon("user-group-new"));
+//    ui->action_create_ou->setIcon(get_object_our_icon("edit-copy"));
+//    ui->action_manual->setIcon(get_object_our_icon("help-contents"));
+//}
+
+
+
+//    ui->action_navigate_up->setIcon(get_object_our_icon("go-up"));
+//    ui->action_navigate_back->setIcon(get_object_our_icon("go-previous"));
+//    ui->action_navigate_forward->setIcon(get_object_our_icon("go-next"));
+//    ui->action_refresh->setIcon(get_object_our_icon("view-refresh"));
+//    ui->action_create_user->setIcon(get_object_our_icon("im-user"));
+//    ui->action_create_group->setIcon(get_object_our_icon("user-group-new"));
+//    ui->action_create_ou->setIcon(get_object_our_icon("edit-copy"));
+//    ui->action_manual->setIcon(get_object_our_icon("help-contents"));
+}
+
+void MainWindow::make_icons_theme_old(){
+    qDebug() << "Выбрана старая тема!";
+
+    flag_theme = 0;
+    setThemeIcons(0);
+
+
+//    ConsoleTreeItemIcons mapIcons = ConsoleTreeItemIcons();
+
+//    mapIcons.ConsoleTreeItemIcons();
+
+    ui->action_navigate_up->setIcon(build_icons("GoUp"));
+    ui->action_navigate_back->setIcon(build_icons("GoPrevious"));
+    ui->action_navigate_forward->setIcon(build_icons("GoNext"));
+    ui->action_refresh->setIcon(build_icons("ViewRefresh"));
+    ui->action_create_user->setIcon(build_icons("Avatar"));
+    ui->action_create_group->setIcon(build_icons("UserGroupNew"));
+    ui->action_create_ou->setIcon(build_icons("OU"));
+    ui->action_manual->setIcon(build_icons("HelpContents"));
+
+
 }
 
 void MainWindow::on_log_searches_changed() {

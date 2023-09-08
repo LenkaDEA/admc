@@ -32,19 +32,34 @@ static QIcon overlay_scope_item_icon(const QIcon &clean_icon, const QIcon &overl
 
 ConsoleTreeItemIcons::ConsoleTreeItemIcons()
 {
-    icons_map[ItemIconType_Policy_Clean] = get_object_icon("Group-Policy-Container");
-    icons_map[ItemIconType_Policy_Link] = overlay_scope_item_icon(icons_map[ItemIconType_Policy_Clean], QIcon::fromTheme("mail-forward"),
-                                                                  QSize(12, 12), QPoint(-2, 6));
+
+    icons_map[ItemIconType_Policy_Clean] = build_icons("GroupPolicyContainer");
+    icons_map[ItemIconType_Policy_Link] = overlay_scope_item_icon(icons_map[ItemIconType_Policy_Clean], build_icons("MailForward"),
+        QSize(12, 12), QPoint(-2, 6));
     icons_map[ItemIconType_Policy_Link_Disabled] = icons_map[ItemIconType_Policy_Link].pixmap(16, 16, QIcon::Disabled);
-    icons_map[ItemIconType_Policy_Enforced] = overlay_scope_item_icon(icons_map[ItemIconType_Policy_Link], QIcon::fromTheme("stop"));
+
+    icons_map[ItemIconType_Policy_Enforced] = overlay_scope_item_icon(icons_map[ItemIconType_Policy_Link], build_icons("Stop"));
     icons_map[ItemIconType_Policy_Enforced_Disabled] = icons_map[ItemIconType_Policy_Enforced].pixmap(16, 16, QIcon::Disabled);
-    icons_map[ItemIconType_OU_Clean] = get_object_icon(OBJECT_CATEGORY_OU);
-    icons_map[ItemIconType_OU_InheritanceBlocked] = overlay_scope_item_icon(icons_map[ItemIconType_OU_Clean], QIcon::fromTheme("changes-prevent"),
-                                                                            QSize(10, 10), QPoint(6, 6));
-    icons_map[ItemIconType_Domain_Clean] = get_object_icon("Domain-DNS");
+    icons_map[ItemIconType_OU_Clean] = build_icons("OU");
+    icons_map[ItemIconType_OU_InheritanceBlocked] = overlay_scope_item_icon(icons_map[ItemIconType_OU_Clean], build_icons("Lock"),
+        QSize(10, 10), QPoint(6, 6));
+    icons_map[ItemIconType_Domain_Clean] = build_icons("DomainDNS");
     icons_map[ItemIconType_Domain_InheritanceBlocked] = overlay_scope_item_icon(icons_map[ItemIconType_Domain_Clean],
-                                                                                QIcon::fromTheme("changes-prevent"),
-                                                                                QSize(10, 10), QPoint(6, 6));
+        build_icons("Lock"),
+        QSize(10, 10), QPoint(6, 6));
+//    icons_map[ItemIconType_Policy_Clean] = get_object_icon("Group-Policy-Container");
+//    icons_map[ItemIconType_Policy_Link] = overlay_scope_item_icon(icons_map[ItemIconType_Policy_Clean], QIcon::fromTheme("mail-forward"),
+//                                                                  QSize(12, 12), QPoint(-2, 6));
+//    icons_map[ItemIconType_Policy_Link_Disabled] = icons_map[ItemIconType_Policy_Link].pixmap(16, 16, QIcon::Disabled);
+//    icons_map[ItemIconType_Policy_Enforced] = overlay_scope_item_icon(icons_map[ItemIconType_Policy_Link], QIcon::fromTheme("stop"));
+//    icons_map[ItemIconType_Policy_Enforced_Disabled] = icons_map[ItemIconType_Policy_Enforced].pixmap(16, 16, QIcon::Disabled);
+//    icons_map[ItemIconType_OU_Clean] = get_object_icon(OBJECT_CATEGORY_OU);
+//    icons_map[ItemIconType_OU_InheritanceBlocked] = overlay_scope_item_icon(icons_map[ItemIconType_OU_Clean], QIcon::fromTheme("changes-prevent"),
+//                                                                            QSize(10, 10), QPoint(6, 6));
+//    icons_map[ItemIconType_Domain_Clean] = get_object_icon("Domain-DNS");
+//    icons_map[ItemIconType_Domain_InheritanceBlocked] = overlay_scope_item_icon(icons_map[ItemIconType_Domain_Clean],
+//                                                                                QIcon::fromTheme("changes-prevent"),
+//                                                                                QSize(10, 10), QPoint(6, 6));
 }
 
 static QIcon overlay_scope_item_icon(const QIcon &clean_icon, const QIcon &overlay_icon, IconOverlayPosition position)

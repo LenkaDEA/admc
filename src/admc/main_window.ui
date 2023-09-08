@@ -20,7 +20,7 @@
      <x>0</x>
      <y>0</y>
      <width>800</width>
-     <height>27</height>
+     <height>19</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_file">
@@ -42,6 +42,13 @@
     <property name="title">
      <string>&amp;View</string>
     </property>
+    <widget class="QMenu" name="menu_ckeck_theme">
+     <property name="title">
+      <string>Ckeck theme</string>
+     </property>
+     <addaction name="action_old_theme"/>
+     <addaction name="action_new_theme"/>
+    </widget>
     <addaction name="action_view_icons"/>
     <addaction name="action_view_list"/>
     <addaction name="action_view_detail"/>
@@ -53,6 +60,7 @@
     <addaction name="separator"/>
     <addaction name="action_customize_columns"/>
     <addaction name="action_filter_objects"/>
+    <addaction name="menu_ckeck_theme"/>
    </widget>
    <widget class="QMenu" name="menu_preferences">
     <property name="title">
@@ -139,8 +147,7 @@
   </action>
   <action name="action_manual">
    <property name="icon">
-    <iconset theme="help">
-     <normaloff>.</normaloff>.</iconset>
+    <iconset theme="help-contents"/>
    </property>
    <property name="text">
     <string>&amp;Manual</string>
@@ -389,6 +396,21 @@
    </property>
    <property name="shortcut">
     <string>Alt+5</string>
+   </property>
+  </action>
+  <action name="actionNew">
+   <property name="text">
+    <string>New</string>
+   </property>
+  </action>
+  <action name="action_old_theme">
+   <property name="text">
+    <string>Old</string>
+   </property>
+  </action>
+  <action name="action_new_theme">
+   <property name="text">
+    <string>New</string>
    </property>
   </action>
  </widget>
