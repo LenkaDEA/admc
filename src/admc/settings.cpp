@@ -112,3 +112,17 @@ void settings_set_variant(const QString setting, const QVariant &value) {
 
     settings.setValue(setting, value);
 }
+
+QList<QString> settings_get_themes (){
+    QSettings::setPath(QSettings::NativeFormat, QSettings::SystemScope, "/etc/icon-theme-ActiveDirectory");
+    QSettings set("icon-theme-ActiveDirectory");
+
+    QList<QString> name_theme_list;
+    name_theme_list.push_front(QIcon::fallbackThemeName());
+
+    QStringList all_themes = set.allKeys();
+    for( QString &name_theme : all_themes )
+        name_theme_list.push_back(set.value(name_theme).toString());
+
+    return name_theme_list;
+}

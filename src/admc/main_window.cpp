@@ -187,12 +187,7 @@ MainWindow::MainWindow(AdInterface &ad, QWidget *parent)
     //
     // Setup theme action
     //
-    const QList<QString> name_theme_list = {
-        QIcon::fallbackThemeName(),
-        "Active-Directory-line",
-        "Active-Directory-duotone",
-        "Active-Directory-color"
-    };
+    const QList<QString> name_theme_list = settings_get_themes();
     auto theme_group = new QActionGroup(this);
     for (const QString &name_theme : name_theme_list){
         const auto action = new QAction(name_theme, theme_group);
