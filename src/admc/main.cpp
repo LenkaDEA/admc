@@ -52,7 +52,8 @@ int main(int argc, char **argv) {
     app.setOrganizationName(ADMC_ORGANIZATION);
     app.setOrganizationDomain(ADMC_ORGANIZATION_DOMAIN);
     app.setWindowIcon(QIcon(":/admc/admc.ico"));
-
+    
+    g_icon_manager->default_theme = QIcon::themeName();
     g_icon_manager->icon_theme(settings_get_variant(SETTING_icons_theme).toString());
     g_icon_manager->init();
 

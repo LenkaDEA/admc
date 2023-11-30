@@ -30,6 +30,7 @@ class IconManager final {
 public:
     explicit IconManager();
 
+    QString default_theme;
     void icon_theme(QString);
     void init();
 

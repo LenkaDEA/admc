@@ -14,9 +14,16 @@ IconManager::IconManager()
 
 void IconManager::icon_theme(QString icon_theme)
 {
-    //Install the selected theme
-    QIcon::setThemeName(icon_theme);
-    settings_set_variant(SETTING_icons_theme, icon_theme);
+    if (icon_theme != default_theme && icon_theme != "")
+        settings_set_variant(SETTING_icons_theme, icon_theme);
+    else
+        settings_set_variant(SETTING_icons_theme, "");
+
+    if (icon_theme != "")
+        QIcon::setThemeName(icon_theme);
+    else
+        QIcon::setThemeName(default_theme);
+
     icon_theme_name = icon_theme;
 }
 

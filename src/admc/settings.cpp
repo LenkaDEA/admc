@@ -22,6 +22,8 @@
 
 #include "config.h"
 #include "connection_options_dialog.h"
+#include "globals.h"
+#include "icon_manager/icon_manager.h"
 
 #include <QAction>
 #include <QDialog>
@@ -118,7 +120,7 @@ QList<QString> settings_get_themes (){
     QSettings set("icon-theme-ActiveDirectory");
 
     QList<QString> name_theme_list;
-    name_theme_list.push_front(QIcon::fallbackThemeName());
+    name_theme_list.push_front(g_icon_manager->default_theme);
 
     QStringList all_themes = set.allKeys();
     for( QString &name_theme : all_themes )
