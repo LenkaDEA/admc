@@ -167,4 +167,7 @@ bool settings_restore_geometry(const QString setting, QWidget *widget);
 void settings_save_header_state(const QString setting, QHeaderView *header);
 bool settings_restore_header_state(const QString setting, QHeaderView *header);
 
+QList<QString> settings_get_themes (QString);
+QList<QPair<QString, QString>> setting_get_Sthemes();
+
 #endif /* SETTINGS_H */

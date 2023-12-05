@@ -187,15 +187,17 @@ MainWindow::MainWindow(AdInterface &ad, QWidget *parent)
     //
     // Setup theme action
     //
-    const QList<QString> name_theme_list = {
-        g_icon_manager->default_theme,
-        "Active-Directory-line",
-        "Active-Directory-duotone",
-        "Active-Directory-color"
-    };
+    const QList<QString> name_theme_list = settings_get_themes("NAME");
+    const QList<QString> display_theme_list = settings_get_themes("DISPLAY_NAME");
+
+    QList<QPair<QString, QString>> pair = setting_get_Sthemes();
+
+    
     auto theme_group = new QActionGroup(this);
-    for (const QString &name_theme : name_theme_list){
-        const auto action = new QAction(name_theme, theme_group);
+    for (const QPair<QString, QString> &theme : pair){
+        QString name_theme = theme.first;
+        QString display_name = theme.second;   
+        const auto action = new QAction(display_name, theme_group);
 
         action->setCheckable(true);
         theme_group->addAction(action);
