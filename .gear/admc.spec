@@ -51,6 +51,7 @@ Tests for ADMC
 %cmake_build
 
 %install
+install -m755 -D scripts/admc-ssh %buildroot%_bindir/admc-ssh
 %cmake_install
 
 %files
@@ -58,6 +59,7 @@ Tests for ADMC
 %doc CHANGELOG.txt
 %doc CHANGELOG_ru.txt
 %_bindir/admc
+%_bindir/admc-ssh
 %_libdir/libadldap.so
 %_man1dir/admc*
 %_datadir/applications/admc.desktop
